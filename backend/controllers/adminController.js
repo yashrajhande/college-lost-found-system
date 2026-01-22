@@ -42,7 +42,7 @@ exports.approveReturn = async (req, res) => {
   try {
     const foundId = req.params.foundId;
 
-    // ✅ Get found item with linked lost item & student
+    //  Get found item with linked lost item & student
     const foundItem = await FoundItem.findById(foundId).populate({
       path: 'matchedWith',
       populate: { path: 'user', select: 'name email' }
@@ -54,7 +54,7 @@ exports.approveReturn = async (req, res) => {
 
     const lostItem = foundItem.matchedWith;
 
-    // ✅ (OPTIONAL) Send email to student
+    //  (OPTIONAL) Send email to student
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -72,7 +72,7 @@ exports.approveReturn = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    // ✅ DELETE records from DB
+    //  DELETE records from DB
     await LostItem.findByIdAndDelete(lostItem._id);
     await FoundItem.findByIdAndDelete(foundId);
 
