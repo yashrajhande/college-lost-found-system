@@ -95,6 +95,15 @@ The frontend will typically be available at `http://localhost:3000`.
 
 ---
 
+
+🧠 How This Project Works (Simple)
+
+1. User reports lost/found item
+2. Data is stored in MongoDB
+3. System checks for matching keywords/category
+4. If match found → Admin verifies
+5. Admin approves → Item returned to user
+
 ## 🛠️ Technologies Used
 
 - **Frontend**: HTML5, Vanilla JavaScript, [Tailwind CSS](https://tailwindcss.com/), [GSAP](https://greensock.com/gsap/) (Animations).
