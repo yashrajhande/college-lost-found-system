@@ -4,14 +4,15 @@ A high-fidelity, full-stack web application designed for college campuses to hel
 
 ---
 
-## ✨ Features
+## 🚀 Core Features
 
-- **Premium UI/UX**: Modern dark-mode interface with glassmorphism effects, GSAP animations, and responsive layouts.
-- **Lost & Found Reporting**: Easy-to-use forms for reporting lost or found items with image uploads.
-- **Automated Matching**: The system automatically matches lost items with reported found items based on categories and descriptions.
-- **Secure Authentication**: Student and Staff login/registration system with JWT-based security.
-- **Admin Dashboard**: Specialized portal for admins to review matches, approve returns, and manage unmatched items.
-- **History Tracking**: Personal dashboard for users to track the status of their reported items.
+- **🤖 Intelligent Auto-Matching Engine**: Our system doesn't just store data—it works for you. It automatically analyzes descriptions, categories, and keywords to identify potential matches between lost and found reports in real-time.
+- **🛡️ Secure Claim Verification**: To prevent false claims, every match undergoes a rigorous manual verification process by campus admins before an item is released.
+- **📸 Evidence-Based Reporting**: Upload high-resolution images and tag items with specific keywords to create a comprehensive digital footprint for every reported object.
+- **🔔 Proactive Notifications**: Get instantly notified the moment a potential match is found for your lost item, cutting down recovery time from days to minutes.
+- **👥 Role-Based Orchestration**: Separate tailored experiences for Students, Staff, and Admins, ensuring a smooth and secure workflow for the entire campus community.
+- **📊 Item Audit Trail**: Full transparency with a detailed history of your reports, including their current status (Pending, Matched, or Returned).
+- **🛠️ Centralized Admin Command Center**: A powerful interface for campus authorities to oversee all activities, manage unmatched items, and orchestrate successful returns with ease.
 
 ---
 
