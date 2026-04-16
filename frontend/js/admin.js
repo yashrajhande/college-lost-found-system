@@ -99,7 +99,11 @@ async function loadUnmatched() {
 // ✅ Popup image
 function showImage(filename) {
   document.getElementById("popupImage").src = `http://localhost:5000/uploads/${filename}`;
-  new bootstrap.Modal(document.getElementById("imageModal")).show();
+  document.getElementById("imageModal").classList.add("active");
+}
+
+function hideImage() {
+  document.getElementById("imageModal").classList.remove("active");
 }
 
 // ✅ Approve Item & Delete

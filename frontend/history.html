@@ -2,57 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Reports | Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Reports | Lost & Found System</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body>
 
-<body class="bg-light">
+  <!-- Animated Background -->
+  <div class="bg-animated"></div>
+  <div class="bg-grid"></div>
 
-<nav class="navbar navbar-dark bg-primary p-3 d-flex justify-content-between">
-  <h4 class="text-white m-0">My Reports</h4>
-  <button class="btn btn-light btn-sm" onclick="logout()">Logout</button>
-</nav>
+  <div class="page-wrapper">
+    <!-- Navbar -->
+    <nav class="glass-nav">
+      <a href="dashboard.html" class="nav-brand">
+        <div class="nav-brand-icon"><i class="fa-solid fa-list-check"></i></div>
+        <div class="nav-brand-text">My<span>Reports</span></div>
+      </a>
+      
+      <div class="nav-actions">
+        <button class="btn-ghost" onclick="logout()">Logout</button>
+      </div>
+    </nav>
 
-<div class="container mt-4">
-  <h3 class="mb-3">Lost Items You Reported</h3>
-  <table class="table table-bordered table-hover shadow">
-    <thead class="table-dark">
-      <tr>
-        <th>Image</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Date</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="lostBody">
-      <tr><td colspan="5" class="text-center">Loading...</td></tr>
-    </tbody>
-  </table>
+    <!-- Main Content -->
+    <main class="table-section">
+      
+      <a href="dashboard.html" class="back-btn anim-ready">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </a>
 
-  <h3 class="mt-5 mb-3">Found Items You Reported</h3>
-  <table class="table table-bordered table-hover shadow">
-    <thead class="table-dark">
-      <tr>
-        <th>Image</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Date</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="foundBody">
-      <tr><td colspan="5" class="text-center">Loading...</td></tr>
-    </tbody>
-  </table>
-</div>
+      <!-- Lost Items Section -->
+      <div class="anim-ready delay-1 mb-12">
+        <div class="table-header">
+          <div class="table-header-icon table-header-icon-lost animate-[breathe_3s_infinite]">
+            <i class="fa-solid fa-magnifying-glass-location"></i>
+          </div>
+          <h3 class="table-title">Lost Items You Reported</h3>
+        </div>
 
-<script src="js/common.js"></script>
-<script src="js/history.js"></script>
+        <div class="glass-table-wrapper shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          <div class="overflow-x-auto">
+            <table class="glass-table w-full">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="lostBody">
+                <tr><td colspan="5" class="text-center py-8 text-slate-500">Loading your reports...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
+      <!-- Found Items Section -->
+      <div class="anim-ready delay-2">
+        <div class="table-header">
+          <div class="table-header-icon table-header-icon-found animate-[breathe_3s_infinite]">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <h3 class="table-title">Found Items You Reported</h3>
+        </div>
+
+        <div class="glass-table-wrapper shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          <div class="overflow-x-auto">
+            <table class="glass-table w-full">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="foundBody">
+                <tr><td colspan="5" class="text-center py-8 text-slate-500">Loading your reports...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/history.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/animations.js"></script>
 </body>
 </html>

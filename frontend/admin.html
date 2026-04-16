@@ -2,82 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel | Lost & Found System</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="admin-accent">
 
-<body class="bg-light">
+  <!-- Animated Background -->
+  <div class="bg-animated"></div>
+  <div class="bg-grid"></div>
 
-<nav class="navbar navbar-dark bg-danger p-3 d-flex justify-content-between">
-  <h4 class="text-white m-0">Admin Panel</h4>
-  <button class="btn btn-light btn-sm" onclick="logout()">Logout</button>
-</nav>
-
-<div class="container mt-4">
-  <h3 class="text-center mb-4 fw-bold">Matched Items Awaiting Approval</h3>
-
-  <table class="table table-bordered table-hover shadow" id="matchTable">
-    <thead class="table-dark">
-      <tr>
-        <th>Lost Image</th>
-        <th>Found Image</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Match Score</th>
-        <th>Student</th>
-        <th>Email</th>
-        <th>Date Found</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="matchBody">
-      <tr><td colspan="9" class="text-center">Loading...</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ✅ IMAGE PREVIEW MODAL -->
-<div class="modal fade" id="imageModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <img id="popupImage" src="" style="width:100%; border-radius:8px;">
+  <div class="page-wrapper">
+    <!-- Navbar -->
+    <nav class="glass-nav admin-nav">
+      <div class="nav-brand">
+        <div class="nav-brand-icon bg-gradient-to-r from-rose-500 to-orange-500 shadow-[0_0_20px_rgba(244,63,94,0.3)]"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="nav-brand-text text-rose-500">Admin<span>Portal</span></div>
       </div>
+      
+      <div class="nav-actions">
+        <button class="btn-ghost" onclick="logout()">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="table-section">
+
+      <!-- Matched Items Table -->
+      <div class="anim-ready delay-1 mb-12">
+        <div class="table-header">
+          <div class="table-header-icon table-header-icon-admin animate-[breathe_3s_infinite]">
+            <i class="fa-solid fa-check-double"></i>
+          </div>
+          <h3 class="table-title">Matched Items Awaiting Approval</h3>
+        </div>
+
+        <div class="glass-table-wrapper shadow-[0_10px_30px_rgba(244,63,94,0.15)]">
+          <div class="overflow-x-auto">
+            <table class="glass-table w-full" id="matchTable">
+              <thead>
+                <tr>
+                  <th>Lost Image</th>
+                  <th>Found Image</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Match Score</th>
+                  <th>Student</th>
+                  <th>Email</th>
+                  <th>Date Found</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="matchBody">
+                <tr><td colspan="9" class="text-center py-8 text-slate-500">Loading matched records...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unmatched Items Table -->
+      <div class="anim-ready delay-2">
+        <div class="table-header">
+          <div class="table-header-icon bg-slate-800 text-slate-400">
+            <i class="fa-solid fa-hourglass-half"></i>
+          </div>
+          <h3 class="table-title text-slate-300">Unmatched Items (Needs Review)</h3>
+        </div>
+
+        <div class="glass-table-wrapper">
+          <div class="overflow-x-auto">
+            <table class="glass-table w-full">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Image</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Reported By</th>
+                </tr>
+              </thead>
+              <tbody id="unmatchedBody">
+                <tr><td colspan="6" class="text-center py-8 text-slate-500">Loading unmatched records...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Custom Image Preview Modal -->
+  <div class="glass-modal-overlay" id="imageModal" onclick="hideImage()">
+    <div class="glass-modal-content" onclick="event.stopPropagation()">
+      <button class="glass-modal-close" onclick="hideImage()"><i class="fa-solid fa-xmark"></i></button>
+      <img id="popupImage" src="" alt="Item Preview">
     </div>
   </div>
-</div>
 
-<div class="container mt-5">
-  <h3 class="text-center mb-3 fw-bold text-secondary">Unmatched Items (Needs Review)</h3>
-
-  <table class="table table-bordered table-hover shadow">
-    <thead class="table-dark">
-      <tr>
-        <th>Type</th>
-        <th>Image</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Date</th>
-        <th>Reported By</th>
-      </tr>
-    </thead>
-    <tbody id="unmatchedBody">
-      <tr><td colspan="6" class="text-center">Loading...</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- Bootstrap Script -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="js/common.js"></script>
-<script src="js/admin.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/animations.js"></script>
 
 </body>
 </html>

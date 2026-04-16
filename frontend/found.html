@@ -2,73 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Report Found Item | Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Found Item | Lost & Found System</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body>
 
-<body class="bg-light">
+  <!-- Animated Background -->
+  <div class="bg-animated"></div>
+  <div class="bg-grid"></div>
 
-<nav class="navbar navbar-dark bg-primary p-3 d-flex justify-content-between align-items-center">
-  <h4 class="text-white m-0">Lost & Found Portal</h4>
+  <div class="page-wrapper">
+    <!-- Navbar -->
+    <nav class="glass-nav">
+      <a href="dashboard.html" class="nav-brand">
+        <div class="nav-brand-icon"><i class="fa-solid fa-house"></i></div>
+        <div class="nav-brand-text">Found<span>Portal</span></div>
+      </a>
+      
+      <div class="nav-actions">
+        <div class="nav-profile">
+          <div id="profileCircle" class="profile-badge"></div>
+          <span id="profileName" class="profile-name hidden md:block"></span>
+        </div>
+        <button class="btn-ghost" onclick="logout()">Logout</button>
+      </div>
+    </nav>
 
-  <div class="d-flex align-items-center">
-    <div id="profileCircle" class="rounded-circle bg-white text-primary fw-bold me-2 profile-badge"></div>
-    <span id="profileName" class="text-white me-3"></span>
-    <button class="btn btn-light btn-sm" onclick="logout()">Logout</button>
+    <!-- Main Content -->
+    <main class="form-container">
+      
+      <a href="dashboard.html" class="back-btn anim-ready">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </a>
+
+      <div class="form-card anim-ready delay-1 w-full max-w-xl mx-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        
+        <div class="form-header-icon form-header-icon-success animate-[breathe_3s_infinite]">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+        </div>
+        
+        <h2 class="form-title text-emerald-400">Report Found Item</h2>
+        <p class="form-subtitle">Thank you for helping! Provide details to find the owner.</p>
+
+        <div class="space-y-4 pt-2">
+
+          <!-- Category -->
+          <div class="form-group mb-0">
+            <label class="form-label">Category</label>
+            <div class="relative">
+               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <select id="category" class="glass-select pl-10 w-full appearance-none">
+                <option value="">Select Category</option>
+                <option value="Wallet">Wallet</option>
+                <option value="Phone">Phone</option>
+                <option value="Bag">Bag</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Books">Books</option>
+                <option value="USB Drive">USB Drive</option>
+                <option value="Others">Others</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-chevron-down text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group mb-0">
+            <label class="form-label">Description & Identifying Features</label>
+            <textarea id="description" class="glass-textarea w-full" placeholder="e.g. Has a small scratch on the back, found near the entrance..."></textarea>
+          </div>
+
+          <!-- Keywords -->
+          <div class="form-group mb-0">
+            <label class="form-label">Keywords (Comma separated)</label>
+            <div class="relative">
+               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-hashtag"></i>
+              </div>
+              <input type="text" id="keywords" class="glass-input pl-10 w-full" placeholder="wallet, black, leather">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Date -->
+            <div class="form-group mb-0">
+              <label class="form-label">Date Found</label>
+              <div class="relative">
+                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </div>
+                <input type="date" id="dateFound" class="glass-input pl-10 w-full text-slate-300">
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group mb-0">
+              <label class="form-label">Location Found</label>
+              <div class="relative">
+                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <input type="text" id="location" class="glass-input pl-10 w-full" placeholder="e.g. Cafeteria Table">
+              </div>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="form-group mb-0">
+            <label class="form-label">Upload Image (Optional but helpful)</label>
+            <input type="file" id="image" class="glass-file-input w-full" accept="image/*">
+          </div>
+
+          <button class="btn-glow btn-success-glow btn-block mt-6 flex justify-center py-3 text-lg" onclick="submitFound()">
+            <i class="fa-solid fa-hand-holding-hand mr-2"></i> Submit Found Item
+          </button>
+
+          <p id="found_msg" class="msg-text msg-error"></p>
+        </div>
+      </div>
+
+    </main>
   </div>
-</nav>
 
+  <script src="js/common.js"></script>
+  <script src="js/found.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/animations.js"></script>
 
-<div class="container mt-5 col-md-6">
-  
-  <div class="card shadow p-4" style="border-radius: 12px;">
-    <h4 class="mb-3 text-center">Submit Found Item Details</h4>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const username = localStorage.getItem("name") || "User";
+      const firstName = username.split(" ")[0];
+      const initial = firstName.charAt(0).toUpperCase();
 
-<select id="category" class="form-select" required>
-  <option value="">Select Category</option>
-  <option>Wallet</option>
-  <option>Phone</option>
-  <option>Bag</option>
-  <option>Laptop</option>
-  <option>Books</option>
-  <option>USB Drive</option>
-  <option>Others</option>
-</select>
+      const circle = document.getElementById("profileCircle");
+      const nameTag = document.getElementById("profileName");
 
-    <textarea id="description" class="form-control mb-3" placeholder="Description"></textarea>
-
-    <input type="text" id="keywords" class="form-control mb-3" placeholder="Keywords (comma separated)">
-  
-    <input type="date" id="dateFound" class="form-control mb-3">
-
-    <input type="text" id="location" class="form-control mb-3" placeholder="Found at which location?">
-
-    <input type="file" id="image" class="form-control mb-3">
-
-    <button class="btn btn-success w-100" onclick="submitFound()">Submit</button>
-
-    <p id="found_msg" class="text-danger text-center mt-2"></p>
-
-  </div>
-</div>
-
-<script src="js/common.js"></script>
-<script src="js/found.js"></script>
-<script>
-  const username = localStorage.getItem("name") || "User";
-  const firstName = username.split(" ")[0];
-  const initial = firstName.charAt(0).toUpperCase();
-
-  const circle = document.getElementById("profileCircle");
-  const nameTag = document.getElementById("profileName");
-
-  if (circle) circle.innerHTML = initial;
-  if (nameTag) nameTag.innerHTML = firstName;
-</script>
-
+      if (circle) circle.innerHTML = initial;
+      if (nameTag) nameTag.innerHTML = firstName;
+    });
+  </script>
 </body>
 </html>
